@@ -3,10 +3,14 @@
 
 package com.mycompany.proyectofinal_poo.InterfacesGraficas;
 import com.mycompany.proyectofinal_poo.Clases.Foods;
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ProductRegister extends javax.swing.JFrame {
     
@@ -27,39 +31,21 @@ public class ProductRegister extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addBttn = new javax.swing.JButton();
-        editBttn = new javax.swing.JButton();
         foodLabel = new javax.swing.JLabel();
         cmbFood = new javax.swing.JComboBox<>();
         foodTypeLabel = new javax.swing.JLabel();
         cmbFoodType = new javax.swing.JComboBox<>();
-        deleteBttn1 = new javax.swing.JButton();
         foodTypeLabel1 = new javax.swing.JLabel();
         loginBttn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        editBttn = new javax.swing.JButton();
+        deleteBttn1 = new javax.swing.JButton();
+        addBttn1 = new javax.swing.JButton();
+        otherBttn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        addBttn.setBackground(new java.awt.Color(40, 75, 99));
-        addBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        addBttn.setForeground(new java.awt.Color(255, 255, 255));
-        addBttn.setText("Añadir");
-        addBttn.setBorder(null);
-        addBttn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBttnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(addBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 80, 20));
-
-        editBttn.setBackground(new java.awt.Color(40, 75, 99));
-        editBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        editBttn.setForeground(new java.awt.Color(255, 255, 255));
-        editBttn.setText("Editar");
-        editBttn.setBorder(null);
-        getContentPane().add(editBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, 20));
 
         foodLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 12)); // NOI18N
         foodLabel.setForeground(new java.awt.Color(53, 53, 53));
@@ -93,13 +79,6 @@ public class ProductRegister extends javax.swing.JFrame {
         });
         getContentPane().add(cmbFoodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 180, -1));
 
-        deleteBttn1.setBackground(new java.awt.Color(40, 75, 99));
-        deleteBttn1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        deleteBttn1.setForeground(new java.awt.Color(255, 255, 255));
-        deleteBttn1.setText("Eliminar");
-        deleteBttn1.setBorder(null);
-        getContentPane().add(deleteBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 80, 20));
-
         foodTypeLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 12)); // NOI18N
         foodTypeLabel1.setForeground(new java.awt.Color(53, 53, 53));
         foodTypeLabel1.setText("Tipo de alimento");
@@ -118,14 +97,63 @@ public class ProductRegister extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        editBttn.setBackground(new java.awt.Color(40, 75, 99));
+        editBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        editBttn.setForeground(new java.awt.Color(255, 255, 255));
+        editBttn.setText("Editar");
+        editBttn.setBorder(null);
+        editBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBttnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(editBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 80, 20));
+
+        deleteBttn1.setBackground(new java.awt.Color(40, 75, 99));
+        deleteBttn1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        deleteBttn1.setForeground(new java.awt.Color(255, 255, 255));
+        deleteBttn1.setText("Eliminar");
+        deleteBttn1.setBorder(null);
+        jPanel2.add(deleteBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 90, 20));
+
+        addBttn1.setBackground(new java.awt.Color(40, 75, 99));
+        addBttn1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        addBttn1.setForeground(new java.awt.Color(255, 255, 255));
+        addBttn1.setText("Añadir");
+        addBttn1.setBorder(null);
+        addBttn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBttn1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(addBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 80, 20));
+
+        otherBttn.setBackground(new java.awt.Color(40, 75, 99));
+        otherBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        otherBttn.setForeground(new java.awt.Color(255, 255, 255));
+        otherBttn.setText("Agregar otro");
+        otherBttn.setBorder(null);
+        otherBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherBttnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(otherBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, 20));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBttnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addBttnActionPerformed
+    private void otherBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherBttnActionPerformed
+       if ("Otro".equals(cmbFood.getSelectedItem())) {
+            //Abrir un JFrame con la lista de alimentos
+            ShowFoodListFrame showFoodListFrame = new ShowFoodListFrame();
+            showFoodListFrame.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_otherBttnActionPerformed
 
     private void loginBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBttnActionPerformed
         UserLogin userLogin = new UserLogin();
@@ -135,18 +163,33 @@ public class ProductRegister extends javax.swing.JFrame {
 
     private void cmbFoodTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFoodTypeActionPerformed
         updateFoodsCmb();
+        
+        
     }//GEN-LAST:event_cmbFoodTypeActionPerformed
 
     private void cmbFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFoodActionPerformed
         
     }//GEN-LAST:event_cmbFoodActionPerformed
+
+    private void editBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBttnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBttnActionPerformed
+
+    private void addBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBttn1ActionPerformed
+        if ("Otro".equals(cmbFood.getSelectedItem())) {
+            JOptionPane.showMessageDialog(null,
+                    "Debe agregar un producto de la lista"
+                    + "\nPor favor seleccione el boton *Agregar otro* ");
+        }
+
+    }//GEN-LAST:event_addBttn1ActionPerformed
     
     //metodo para inicializar los alimentos en los comboBox
     private void initFoods(){
         foodByType = new HashMap<>();
-        foodByType.put("Frutas y Verduras", List.of("Manzana", "Aguacate", "Uva", "Tomate"));
-        foodByType.put("Grasas", List.of("Aceite", "Queso", "Chocolate", "Pescado"));
-        foodByType.put("Carbohidratos", List.of("Papa", "Pasta", "Pan"));
+        foodByType.put("Frutas y Verduras", List.of("Manzana", "Aguacate", "Uva", "Tomate", "Otro"));
+        foodByType.put("Grasas", List.of("Aceite", "Queso", "Chocolate", "Pescado", "Otro"));
+        foodByType.put("Carbohidratos", List.of("Papa", "Pasta", "Pan", "Otro"));
     }
     
     //Configurar elmodelo para el comoBox de tipo de alimento
@@ -156,8 +199,48 @@ public class ProductRegister extends javax.swing.JFrame {
                 (foodByType.keySet().toArray(new String[0])); 
         cmbFoodType.setModel(foodTypeModel);
         
+        
         //modelo inicial del cmbFood
         updateFoodsCmb();
+        
+        /*DefaultComboBoxModel<String> foodModel = new DefaultComboBoxModel<>();
+        foodModel.addElement("Agregar");
+        cmbFood.setModel(foodModel);*/
+    }
+    
+    //Lista de productos no agregados
+    private void initFoodsList() {
+        List<String> fruitsYvegetables = new ArrayList<>();
+        fruitsYvegetables.add("Banano");
+        fruitsYvegetables.add("Granadilla");
+        fruitsYvegetables.add("guayaba");
+        fruitsYvegetables.add("Cilantro");
+        fruitsYvegetables.add("Fresa");
+        fruitsYvegetables.add("Pepino");
+        fruitsYvegetables.add("Zanahoria");
+        fruitsYvegetables.add("Espinaca");
+        fruitsYvegetables.add("Pera");
+        fruitsYvegetables.add("Lechuga");
+
+        List<String> fats = new ArrayList<>();
+        fats.add("Manteca");
+        fats.add("Papas Fritas");
+        fats.add("Pescado");
+        fats.add("Mantequilla");
+        fats.add("Nueces");
+        
+
+        List<String> carbohydrates = new ArrayList<>();
+        carbohydrates.add("Avena");
+        carbohydrates.add("Plátano");
+        carbohydrates.add("Maíz");
+        carbohydrates.add("Yuca");
+        carbohydrates.add("Batata");
+        carbohydrates.add("Quinoa");
+
+        foodByType.put("Frutas y Verduras", fruitsYvegetables);
+        foodByType.put("Grasas", fats);
+        foodByType.put("Carbohidratos", carbohydrates);
     }
     
     private void updateFoodsCmb(){
@@ -222,7 +305,7 @@ public class ProductRegister extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBttn;
+    private javax.swing.JButton addBttn1;
     private javax.swing.JComboBox<String> cmbFood;
     private javax.swing.JComboBox<String> cmbFoodType;
     private javax.swing.JButton deleteBttn1;
@@ -232,5 +315,6 @@ public class ProductRegister extends javax.swing.JFrame {
     private javax.swing.JLabel foodTypeLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginBttn;
+    private javax.swing.JButton otherBttn;
     // End of variables declaration//GEN-END:variables
 }
