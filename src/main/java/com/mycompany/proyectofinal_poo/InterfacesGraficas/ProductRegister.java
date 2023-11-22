@@ -1,13 +1,26 @@
+//Trabajo realizado por Yuliana Marcela García Alvarado y
+//Leonardo Sebastián Colmenares Urrea
 
 package com.mycompany.proyectofinal_poo.InterfacesGraficas;
+import com.mycompany.proyectofinal_poo.Clases.Foods;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 
 public class ProductRegister extends javax.swing.JFrame {
-
+    
+    private Map<String, List<String>> foodByType;
+    
     public ProductRegister() {
         initComponents();
         this.setLocationRelativeTo(null);
         setSize(315, 380);
         setTitle("Registro de Alimentos");
+        
+        //Inicializar alimentos y configurar modelos
+        initFoods();
+        modelConfig();
     }
 
     @SuppressWarnings("unchecked")
@@ -57,6 +70,11 @@ public class ProductRegister extends javax.swing.JFrame {
         cmbFood.setForeground(new java.awt.Color(53, 53, 53));
         cmbFood.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbFood.setBorder(null);
+        cmbFood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFoodActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, -1));
 
         foodTypeLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
@@ -68,6 +86,11 @@ public class ProductRegister extends javax.swing.JFrame {
         cmbFoodType.setForeground(new java.awt.Color(53, 53, 53));
         cmbFoodType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbFoodType.setBorder(null);
+        cmbFoodType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFoodTypeActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbFoodType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 180, -1));
 
         deleteBttn1.setBackground(new java.awt.Color(40, 75, 99));
@@ -110,6 +133,45 @@ public class ProductRegister extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_loginBttnActionPerformed
 
+    private void cmbFoodTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFoodTypeActionPerformed
+        updateFoodsCmb();
+    }//GEN-LAST:event_cmbFoodTypeActionPerformed
+
+    private void cmbFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFoodActionPerformed
+        
+    }//GEN-LAST:event_cmbFoodActionPerformed
+    
+    //metodo para inicializar los alimentos en los comboBox
+    private void initFoods(){
+        foodByType = new HashMap<>();
+        foodByType.put("Frutas y Verduras", List.of("Manzana", "Aguacate", "Uva", "Tomate"));
+        foodByType.put("Grasas", List.of("Aceite", "Queso", "Chocolate", "Pescado"));
+        foodByType.put("Carbohidratos", List.of("Papa", "Pasta", "Pan"));
+    }
+    
+    //Configurar elmodelo para el comoBox de tipo de alimento
+    private void modelConfig(){
+        DefaultComboBoxModel<String> foodTypeModel = 
+                new DefaultComboBoxModel<>
+                (foodByType.keySet().toArray(new String[0])); 
+        cmbFoodType.setModel(foodTypeModel);
+        
+        //modelo inicial del cmbFood
+        updateFoodsCmb();
+    }
+    
+    private void updateFoodsCmb(){
+        String typeSelected = (String) cmbFoodType.getSelectedItem();
+        if(typeSelected != null){
+            List<String> foods = foodByType.get(typeSelected);
+            
+            //configuracion del modelo cmbFood
+            DefaultComboBoxModel<String> foodsModel = new 
+                DefaultComboBoxModel<>(foods.toArray(new String[0]));
+            cmbFood.setModel(foodsModel);
+        }    
+    }
+    
     /**
      * @param args the command line arguments
      */
