@@ -2,7 +2,10 @@
 //Leonardo Sebastián Colmenares Urrea
 
 package com.mycompany.proyectofinal_poo.InterfacesGraficas;
+import com.mycompany.proyectofinal_poo.Clases.Carbohydrates;
+import com.mycompany.proyectofinal_poo.Clases.Fats;
 import com.mycompany.proyectofinal_poo.Clases.Foods;
+import com.mycompany.proyectofinal_poo.Clases.FruitsnVegetables;
 
 
 import java.util.HashMap;
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ProductRegister extends javax.swing.JFrame {
-    
+    private List<Foods> foodsList;
     private Map<String, List<String>> foodByType;
     
     public ProductRegister() {
@@ -25,6 +28,7 @@ public class ProductRegister extends javax.swing.JFrame {
         //Inicializar alimentos y configurar modelos
         initFoods();
         modelConfig();
+        initFoodsList();
     }
 
     @SuppressWarnings("unchecked")
@@ -210,37 +214,21 @@ public class ProductRegister extends javax.swing.JFrame {
     
     //Lista de productos no agregados
     private void initFoodsList() {
-        List<String> fruitsYvegetables = new ArrayList<>();
-        fruitsYvegetables.add("Banano");
-        fruitsYvegetables.add("Granadilla");
-        fruitsYvegetables.add("guayaba");
-        fruitsYvegetables.add("Cilantro");
-        fruitsYvegetables.add("Fresa");
-        fruitsYvegetables.add("Pepino");
-        fruitsYvegetables.add("Zanahoria");
-        fruitsYvegetables.add("Espinaca");
-        fruitsYvegetables.add("Pera");
-        fruitsYvegetables.add("Lechuga");
+        foodsList = new ArrayList<>();
+        foodsList.add(new FruitsnVegetables("Banano"));
+        foodsList.add(new FruitsnVegetables("Zanahoria"));
+        foodsList.add(new FruitsnVegetables("Abichuela"));
+        foodsList.add(new Fats("Aceite de Oliva"));
+        foodsList.add(new Fats("Mantequilla"));
+        foodsList.add(new Fats("Nueces"));
+        foodsList.add(new Carbohydrates("Quinua"));
+        foodsList.add(new Carbohydrates("Avena"));
+        foodsList.add(new Carbohydrates("Yuca"));
 
-        List<String> fats = new ArrayList<>();
-        fats.add("Manteca");
-        fats.add("Papas Fritas");
-        fats.add("Pescado");
-        fats.add("Mantequilla");
-        fats.add("Nueces");
-        
-
-        List<String> carbohydrates = new ArrayList<>();
-        carbohydrates.add("Avena");
-        carbohydrates.add("Plátano");
-        carbohydrates.add("Maíz");
-        carbohydrates.add("Yuca");
-        carbohydrates.add("Batata");
-        carbohydrates.add("Quinoa");
-
-        foodByType.put("Frutas y Verduras", fruitsYvegetables);
-        foodByType.put("Grasas", fats);
-        foodByType.put("Carbohidratos", carbohydrates);
+    }
+    
+    public List<Foods> getFoodsList() {
+        return foodsList;
     }
     
     private void updateFoodsCmb(){
