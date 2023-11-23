@@ -19,11 +19,11 @@ public class UserLogin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Background = new javax.swing.JPanel();
         LoginLabel = new javax.swing.JLabel();
-        passInput = new javax.swing.JTextField();
         userInput = new javax.swing.JTextField();
         LoginLabel1 = new javax.swing.JLabel();
         LoginLabel2 = new javax.swing.JLabel();
         loginbttn = new javax.swing.JButton();
+        passInput = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -35,15 +35,7 @@ public class UserLogin extends javax.swing.JFrame {
         LoginLabel.setText("Password");
         Background.add(LoginLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 70, 20));
 
-        passInput.setBackground(new java.awt.Color(217, 217, 217));
-        passInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passInputActionPerformed(evt);
-            }
-        });
-        Background.add(passInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 100, -1));
-
-        userInput.setBackground(new java.awt.Color(217, 217, 217));
+        userInput.setBackground(new java.awt.Color(255, 255, 255));
         userInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userInputActionPerformed(evt);
@@ -72,6 +64,13 @@ public class UserLogin extends javax.swing.JFrame {
         });
         Background.add(loginbttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 60, 20));
 
+        passInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passInputActionPerformed(evt);
+            }
+        });
+        Background.add(passInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 100, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,17 +89,17 @@ public class UserLogin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_userInputActionPerformed
 
-    private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
-        
-    }//GEN-LAST:event_passInputActionPerformed
-
     private void loginbttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbttnActionPerformed
         try {
+            char[] password = passInput.getPassword();
+            String passwordString = new String(password);
+            
             if ("admin".equals(userInput.getText()) && 
-                    "123".equals(passInput.getText())){
-            ProductRegister productRegister = new ProductRegister();
-            productRegister.setVisible(true);
-            this.setVisible(false);
+                    "123".equals(passwordString)){
+                
+                ProductRegister productRegister = new ProductRegister();
+                productRegister.setVisible(true);
+                this.setVisible(false);
         } else{
             JOptionPane.showMessageDialog(null, "Usuario o "
                     + "contrasena invalido");  
@@ -111,6 +110,10 @@ public class UserLogin extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_loginbttnActionPerformed
+
+    private void passInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passInputActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,7 +133,7 @@ public class UserLogin extends javax.swing.JFrame {
     private javax.swing.JLabel LoginLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loginbttn;
-    private javax.swing.JTextField passInput;
+    private javax.swing.JPasswordField passInput;
     private javax.swing.JTextField userInput;
     // End of variables declaration//GEN-END:variables
 }

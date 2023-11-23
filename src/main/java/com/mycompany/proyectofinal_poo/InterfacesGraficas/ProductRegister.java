@@ -195,6 +195,7 @@ public class ProductRegister extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_otherBttnActionPerformed
 
+    //done
     private void loginBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBttnActionPerformed
         UserLogin userLogin = new UserLogin();
         userLogin.setVisible(true);
@@ -229,17 +230,19 @@ public class ProductRegister extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_addBttn1ActionPerformed
-
+    
+    //done
     private void deleteBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBttn1ActionPerformed
         //Para obtener el indice seleccionado en la lista
         int selectedIndex = productJlist.getSelectedIndex();
         
         //verificar si se ha seleccionado algun elemento para eliminarlo de la lista
-        if (selectedIndex != -1) {
+        if (selectedIndex != -1 && selectedIndex < listaAlimentosModel.getSize()) {
             listaAlimentosModel.remove(selectedIndex);
         }
     }//GEN-LAST:event_deleteBttn1ActionPerformed
-
+    
+    //done
     private void editBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBttn1ActionPerformed
         // Obtener el índice que se seleccionó
         int selectedIndex1 = productJlist.getSelectedIndex();
@@ -268,7 +271,8 @@ public class ProductRegister extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_editBttn1ActionPerformed
-
+    
+    //done
     private void confirmBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBttnActionPerformed
         // Obtener el índice que se seleccionó
     int selectedIndex1 = productJlist.getSelectedIndex();
@@ -290,16 +294,18 @@ public class ProductRegister extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_confirmBttnActionPerformed
     
-    //metodo para inicializar los alimentos en los comboBox
+    //done
     private void initFoods(){
+        //metodo para inicializar los alimentos en los comboBox
         foodByType = new HashMap<>();
         foodByType.put("Frutas y Verduras", List.of("Manzana", "Aguacate", "Uva", "Tomate", "Otro"));
         foodByType.put("Grasas", List.of("Aceite", "Queso", "Chocolate", "Pescado", "Otro"));
         foodByType.put("Carbohidratos", List.of("Papa", "Pasta", "Pan", "Otro"));
     }
     
-    //Configurar elmodelo para el comoBox de tipo de alimento
+    //done
     private void modelConfig(){
+        //metodo para inicializar los alimentos en los comboBox
         DefaultComboBoxModel<String> foodTypeModel = 
                 new DefaultComboBoxModel<>
                 (foodByType.keySet().toArray(new String[0])); 
@@ -334,6 +340,7 @@ public class ProductRegister extends javax.swing.JFrame {
         return foodsList;
     }
     
+    //done
     private void updateFoodsCmb(){
         String typeSelected = (String) cmbFoodType.getSelectedItem();
         if(typeSelected != null){
