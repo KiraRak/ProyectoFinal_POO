@@ -21,7 +21,7 @@ public class ShowFoodListFrame extends javax.swing.JFrame {
     public ShowFoodListFrame() {
         initComponents();
         listModel = new DefaultListModel<>();
-        visibleList = new JList<>(listModel);
+        //visibleList = new JList<Foods>(listModel); --Error aqui
         
         
         // Asigna un CellRenderer para mostrar la representación adecuada

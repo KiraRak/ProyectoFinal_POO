@@ -13,16 +13,18 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 public class ProductRegister extends javax.swing.JFrame {
     private List<Foods> foodsList;
     private Map<String, List<String>> foodByType;
+    private DefaultListModel<String> listaAlimentosModel = new DefaultListModel<>();
     
     public ProductRegister() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setSize(315, 380);
+        setSize(515, 420);
         setTitle("Registro de Alimentos");
         
         //Inicializar alimentos y configurar modelos
@@ -37,15 +39,19 @@ public class ProductRegister extends javax.swing.JFrame {
 
         foodLabel = new javax.swing.JLabel();
         cmbFood = new javax.swing.JComboBox<>();
-        foodTypeLabel = new javax.swing.JLabel();
         cmbFoodType = new javax.swing.JComboBox<>();
         foodTypeLabel1 = new javax.swing.JLabel();
         loginBttn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        editBttn = new javax.swing.JButton();
         deleteBttn1 = new javax.swing.JButton();
         addBttn1 = new javax.swing.JButton();
         otherBttn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productJlist = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        foodTypeLabel = new javax.swing.JLabel();
+        editBttn1 = new javax.swing.JButton();
+        confirmBttn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -66,11 +72,6 @@ public class ProductRegister extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cmbFood, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, -1));
-
-        foodTypeLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
-        foodTypeLabel.setForeground(new java.awt.Color(53, 53, 53));
-        foodTypeLabel.setText("CARRITO");
-        getContentPane().add(foodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 70, -1));
 
         cmbFoodType.setBackground(new java.awt.Color(217, 217, 217));
         cmbFoodType.setForeground(new java.awt.Color(53, 53, 53));
@@ -102,24 +103,17 @@ public class ProductRegister extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editBttn.setBackground(new java.awt.Color(40, 75, 99));
-        editBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        editBttn.setForeground(new java.awt.Color(255, 255, 255));
-        editBttn.setText("Editar");
-        editBttn.setBorder(null);
-        editBttn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBttnActionPerformed(evt);
-            }
-        });
-        jPanel2.add(editBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 80, 20));
-
         deleteBttn1.setBackground(new java.awt.Color(40, 75, 99));
         deleteBttn1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         deleteBttn1.setForeground(new java.awt.Color(255, 255, 255));
         deleteBttn1.setText("Eliminar");
         deleteBttn1.setBorder(null);
-        jPanel2.add(deleteBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 90, 20));
+        deleteBttn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBttn1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(deleteBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 90, 20));
 
         addBttn1.setBackground(new java.awt.Color(40, 75, 99));
         addBttn1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -131,7 +125,7 @@ public class ProductRegister extends javax.swing.JFrame {
                 addBttn1ActionPerformed(evt);
             }
         });
-        jPanel2.add(addBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 80, 20));
+        jPanel2.add(addBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 90, 20));
 
         otherBttn.setBackground(new java.awt.Color(40, 75, 99));
         otherBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -143,9 +137,51 @@ public class ProductRegister extends javax.swing.JFrame {
                 otherBttnActionPerformed(evt);
             }
         });
-        jPanel2.add(otherBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 90, 20));
+        jPanel2.add(otherBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 90, 20));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 400));
+        jScrollPane1.setBackground(new java.awt.Color(237, 237, 233));
+
+        productJlist.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(204, 204, 204), new java.awt.Color(51, 51, 51), null));
+        productJlist.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        jScrollPane1.setViewportView(productJlist);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 170, 310));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(53, 53, 53));
+        jLabel1.setText("Lista de agregados");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
+
+        foodTypeLabel.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        foodTypeLabel.setForeground(new java.awt.Color(53, 53, 53));
+        foodTypeLabel.setText("CARRITO");
+        jPanel2.add(foodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 70, 20));
+
+        editBttn1.setBackground(new java.awt.Color(40, 75, 99));
+        editBttn1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        editBttn1.setForeground(new java.awt.Color(255, 255, 255));
+        editBttn1.setText("Editar");
+        editBttn1.setBorder(null);
+        editBttn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBttn1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(editBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 70, 20));
+
+        confirmBttn.setBackground(new java.awt.Color(40, 75, 99));
+        confirmBttn.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        confirmBttn.setForeground(new java.awt.Color(255, 255, 255));
+        confirmBttn.setText("Confirmar edicion");
+        confirmBttn.setBorder(null);
+        confirmBttn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBttnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(confirmBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 120, 20));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,19 +210,85 @@ public class ProductRegister extends javax.swing.JFrame {
     private void cmbFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFoodActionPerformed
         
     }//GEN-LAST:event_cmbFoodActionPerformed
-
-    private void editBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBttnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editBttnActionPerformed
-
+                          
     private void addBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBttn1ActionPerformed
         if ("Otro".equals(cmbFood.getSelectedItem())) {
             JOptionPane.showMessageDialog(null,
                     "Debe agregar un producto de la lista"
                     + "\nPor favor seleccione el boton *Agregar otro* ");
+        }else{
+            String tipoAlimento = (String) cmbFoodType.getSelectedItem();
+            String alimento = (String) cmbFood.getSelectedItem();
+            
+            //Agregar a la lista de anadidos
+            String info = "Tipo: " + tipoAlimento + " Alimento: " + alimento;
+            listaAlimentosModel.addElement(info);
+            
+            //Actualizar la lista con la info agregada
+            productJlist.setModel(listaAlimentosModel);
         }
 
     }//GEN-LAST:event_addBttn1ActionPerformed
+
+    private void deleteBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBttn1ActionPerformed
+        //Para obtener el indice seleccionado en la lista
+        int selectedIndex = productJlist.getSelectedIndex();
+        
+        //verificar si se ha seleccionado algun elemento para eliminarlo de la lista
+        if (selectedIndex != -1) {
+            listaAlimentosModel.remove(selectedIndex);
+        }
+    }//GEN-LAST:event_deleteBttn1ActionPerformed
+
+    private void editBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBttn1ActionPerformed
+        // Obtener el índice que se seleccionó
+        int selectedIndex1 = productJlist.getSelectedIndex();
+
+        if (selectedIndex1 != -1) {
+            String selectedElement = listaAlimentosModel.getElementAt(selectedIndex1);
+
+            if (selectedElement.startsWith("Tipo: ") && selectedElement.contains(" Alimento: ")) {
+                // Separar el elemento en tipo y alimento
+                String[] partes = selectedElement.split(" Alimento: ");
+
+                if (partes.length == 2) {
+                    // Se obtiene el tipo ignorando la palabra "Tipo:"
+                    String tipoAlimento1 = partes[0].substring(6); 
+                    String alimento1 = partes[1];
+
+                    // Configurar los comboBox con las partes obtenidas
+                    cmbFoodType.setSelectedItem(tipoAlimento1);
+                    cmbFood.setSelectedItem(alimento1);
+
+                } else {
+                    System.out.println("Error: formato de cadena inesperado");
+                }
+            } else {
+                System.out.println("Error: formato de cadena inesperado");
+            }
+        }
+    }//GEN-LAST:event_editBttn1ActionPerformed
+
+    private void confirmBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBttnActionPerformed
+        // Obtener el índice que se seleccionó
+    int selectedIndex1 = productJlist.getSelectedIndex();
+
+    if (selectedIndex1 != -1) {
+        // Obtener los nuevos valores de los JComboBox
+        String tipoAlimentoNuevo = (String) cmbFoodType.getSelectedItem();
+        String alimentoNuevo = (String) cmbFood.getSelectedItem();
+
+        // Actualizar el modelo de la lista con los nuevos valores
+        String newElement = "Tipo: " + tipoAlimentoNuevo + " Alimento: " + alimentoNuevo;
+        listaAlimentosModel.setElementAt(newElement, selectedIndex1);
+
+        // Actualizar el modelo de la lista fuera del bloque if
+        productJlist.setModel(new javax.swing.AbstractListModel<String>() {
+            public int getSize() { return listaAlimentosModel.getSize(); }
+            public String getElementAt(int i) { return listaAlimentosModel.getElementAt(i); }
+        });
+    }
+    }//GEN-LAST:event_confirmBttnActionPerformed
     
     //metodo para inicializar los alimentos en los comboBox
     private void initFoods(){
@@ -214,6 +316,7 @@ public class ProductRegister extends javax.swing.JFrame {
     
     //Lista de productos no agregados
     private void initFoodsList() {
+        //todos estos productos heredan de sus clases
         foodsList = new ArrayList<>();
         foodsList.add(new FruitsnVegetables("Banano"));
         foodsList.add(new FruitsnVegetables("Zanahoria"));
@@ -296,13 +399,17 @@ public class ProductRegister extends javax.swing.JFrame {
     private javax.swing.JButton addBttn1;
     private javax.swing.JComboBox<String> cmbFood;
     private javax.swing.JComboBox<String> cmbFoodType;
+    private javax.swing.JButton confirmBttn;
     private javax.swing.JButton deleteBttn1;
-    private javax.swing.JButton editBttn;
+    private javax.swing.JButton editBttn1;
     private javax.swing.JLabel foodLabel;
     private javax.swing.JLabel foodTypeLabel;
     private javax.swing.JLabel foodTypeLabel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loginBttn;
     private javax.swing.JButton otherBttn;
+    private javax.swing.JList<String> productJlist;
     // End of variables declaration//GEN-END:variables
 }
