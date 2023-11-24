@@ -10,40 +10,35 @@ import javax.swing.ListModel;
 import javax.swing.ListCellRenderer;
 import javax.swing.DefaultListCellRenderer;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JList;
 
 
 public class ShowFoodListFrame extends javax.swing.JFrame {
-    private DefaultListModel<Foods> listModel;
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
+    private Map<String, List<String>> foodByType;
     
-    
-    
-    public ShowFoodListFrame() {
+       
+    public ShowFoodListFrame(Map<String, List<String>> foodByType) {
+        this.foodByType = foodByType;
         initComponents();
-        listModel = new DefaultListModel<>();
-        //visibleList = new JList<Foods>(listModel); --Error aqui
-        
-        
-        // Asigna un CellRenderer para mostrar la representación adecuada
-        visibleList.setCellRenderer(new FoodsListCellRenderer());
-        
-        // Configura el layout del formulario
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(new JScrollPane(visibleList), BorderLayout.CENTER);
-        
         setFoodsList();
     }
     
      private void setFoodsList() {
         // Usa la variable de instancia foodsList de la clase ProductRegister
         ProductRegister productRegister = new ProductRegister();
+        productRegister.setVisible(true);
         List<Foods> foodsList = productRegister.getFoodsList();
 
         listModel.clear();
 
         for (Foods food : foodsList) {
-            listModel.addElement(food);
+            listModel.addElement(food.getName());
         }
+        
+        visibleList.setModel(listModel);
     }
      
      // Añade una clase para el renderizador de celdas
@@ -62,64 +57,80 @@ public class ShowFoodListFrame extends javax.swing.JFrame {
         }
     }
     
-    
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        SelectBttn = new javax.swing.JButton();
+        cancelBttn = new javax.swing.JButton();
         visibleList = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        SelectBttn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        SelectBttn.setText("Seleccionar");
-        SelectBttn.addActionListener(new java.awt.event.ActionListener() {
+        cancelBttn.setBackground(new java.awt.Color(40, 75, 99));
+        cancelBttn.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        cancelBttn.setForeground(new java.awt.Color(255, 255, 255));
+        cancelBttn.setText("Cancelar");
+        cancelBttn.setBorder(null);
+        cancelBttn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectBttnActionPerformed(evt);
+                cancelBttnActionPerformed(evt);
             }
         });
+        jPanel2.add(cancelBttn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 60, 26));
 
         visibleList.setBackground(new java.awt.Color(255, 255, 255));
         visibleList.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.darkGray));
         visibleList.setFont(new java.awt.Font("Segoe UI Historic", 0, 14)); // NOI18N
         visibleList.setForeground(new java.awt.Color(53, 53, 53));
+        jPanel2.add(visibleList, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 220, 307));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(visibleList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(SelectBttn)
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(visibleList, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(SelectBttn)
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Historic", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel1.setText("Productos no agregados");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 170, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 410));
+        SelectBttn1.setBackground(new java.awt.Color(40, 75, 99));
+        SelectBttn1.setFont(new java.awt.Font("Segoe UI Historic", 0, 12)); // NOI18N
+        SelectBttn1.setForeground(new java.awt.Color(255, 255, 255));
+        SelectBttn1.setText("Seleccionar");
+        SelectBttn1.setBorder(null);
+        SelectBttn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectBttn1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(SelectBttn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 77, 26));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 240, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SelectBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectBttnActionPerformed
+    private void cancelBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBttnActionPerformed
+    this.setVisible(false);
+        
+    }//GEN-LAST:event_cancelBttnActionPerformed
 
-    }//GEN-LAST:event_SelectBttnActionPerformed
+    private void SelectBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectBttn1ActionPerformed
+        String selectedFood = visibleList.getSelectedValue();
+        if (selectedFood != null) {
+           
+        }
+        List<String> foodsList = new ArrayList<>(foodByType.get("Grasas"));
+        foodsList.add("Mantequilla");
+        for (String food : foodsList) {
+            System.out.println(food);
+        }
+        foodByType.put("Grasas", foodsList);
+    }//GEN-LAST:event_SelectBttn1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -165,13 +176,17 @@ public class ShowFoodListFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowFoodListFrame().setVisible(true);
+                ProductRegister productRegister = new ProductRegister();
+                new ShowFoodListFrame(productRegister.getFoodByType()).setVisible(true);
+                //new ShowFoodListFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SelectBttn;
+    private javax.swing.JButton SelectBttn1;
+    private javax.swing.JButton cancelBttn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JList<String> visibleList;
     // End of variables declaration//GEN-END:variables

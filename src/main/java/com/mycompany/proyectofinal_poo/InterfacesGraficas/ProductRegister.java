@@ -32,6 +32,10 @@ public class ProductRegister extends javax.swing.JFrame {
         modelConfig();
         initFoodsList();
     }
+    
+    public Map<String, List<String>> getFoodByType() {
+        return this.foodByType;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -189,7 +193,7 @@ public class ProductRegister extends javax.swing.JFrame {
     private void otherBttnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherBttnActionPerformed
        if ("Otro".equals(cmbFood.getSelectedItem())) {
             //Abrir un JFrame con la lista de alimentos
-            ShowFoodListFrame showFoodListFrame = new ShowFoodListFrame();
+            ShowFoodListFrame showFoodListFrame = new ShowFoodListFrame(foodByType);
             showFoodListFrame.setVisible(true);
             
         }
@@ -211,7 +215,8 @@ public class ProductRegister extends javax.swing.JFrame {
     private void cmbFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFoodActionPerformed
         
     }//GEN-LAST:event_cmbFoodActionPerformed
-                          
+    
+    //done                      
     private void addBttn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBttn1ActionPerformed
         if ("Otro".equals(cmbFood.getSelectedItem())) {
             JOptionPane.showMessageDialog(null,
@@ -236,10 +241,9 @@ public class ProductRegister extends javax.swing.JFrame {
         //Para obtener el indice seleccionado en la lista
         int selectedIndex = productJlist.getSelectedIndex();
         
-        //verificar si se ha seleccionado algun elemento para eliminarlo de la lista
         if (selectedIndex != -1 && selectedIndex < listaAlimentosModel.getSize()) {
-            listaAlimentosModel.remove(selectedIndex);
-        }
+           listaAlimentosModel.remove(selectedIndex);
+        } 
     }//GEN-LAST:event_deleteBttn1ActionPerformed
     
     //done
